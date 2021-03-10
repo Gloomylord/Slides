@@ -2,9 +2,9 @@
   "name": "shri-2021-task-3",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode=production",
     "watch": "webpack --watch",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open --mode=development"
   },
   "dependencies": {
     "immer": "^8.0.1",

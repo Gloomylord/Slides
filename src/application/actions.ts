@@ -16,8 +16,9 @@ export const actionMessage = (action: string, params: string) => ({ type: 'messa
 
 export type Action = 
     | ReturnType<typeof actionNext> 
-    | ReturnType<typeof actionPrev> 
-    | ReturnType<typeof actionRestart> 
+    | ReturnType<typeof actionPrev>
+    | ReturnType<typeof actionUpdate>
+    | ReturnType<typeof actionRestart>
     | ReturnType<typeof actionMessage> 
     | ReturnType<typeof actionSetTheme> 
     | ReturnType<typeof actionTimer>;
