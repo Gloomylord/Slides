@@ -37,6 +37,10 @@ export const initProgress = (parent: HTMLDivElement) => {
     return progress;
 }
 
+export const removeElementTheme = (elem: HTMLElement, theme: SlideTheme) => {
+    elem.classList.remove(`theme_${theme}`);
+}
+
 export const setElementTheme = (elem: HTMLElement, theme: SlideTheme) => {
     elem.classList.add(`theme_${theme}`);
 }

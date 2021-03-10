@@ -1,5 +1,5 @@
 import { messageAction, XMessage } from './messages';
-import { setElementTheme } from './application/view';
+import { setElementTheme, removeElementTheme } from './application/view';
 import './frame.css';
 
 interface ExtendedWindow extends Window { 
@@ -20,6 +20,7 @@ function receiveMessage({ data }: MessageEvent<XMessage>) {
     if (data.type === 'message@UPDATE') {
         document.body.innerHTML = window.renderTemplate(data.alias, data.data);
     } else if (data.type === 'message@SET_THEME') {
+        removeElementTheme(document.body, data.theme === "dark" ? "light" : "dark");
         setElementTheme(document.body, data.theme);
     }
 }

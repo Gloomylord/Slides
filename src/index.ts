@@ -9,7 +9,7 @@ import {
 } from './application/actions';
 import { createState } from './application/state';
 import { createCurrentDataSelector, createCurrentIndexSelector, createProgressSelector, createThemeSelector } from './application/selectors';
-import { initIframe, initProgress, sendMessage, setElementTheme, setScale } from './application/view';
+import { initIframe, initProgress, sendMessage, setElementTheme, removeElementTheme, setScale } from './application/view';
 
 import './index.css';
 
@@ -49,11 +49,12 @@ createCurrentDataSelector(state$)
 createThemeSelector(state$)
     .subscribe(theme => {
         setElementTheme(document.body, theme);
+        removeElementTheme(document.body, theme === "dark" ? "light" : "dark");
         frames.forEach(iframe => sendMessage(iframe, messageSetTheme(theme)));
-    })
+    });
 
 document.querySelector<HTMLDivElement>('.set-light').addEventListener('click', () => dispatch(actionSetTheme('light')));
 document.querySelector<HTMLDivElement>('.set-dark').addEventListener('click', () => dispatch(actionSetTheme('dark')));
 document.querySelector<HTMLDivElement>('.prev').addEventListener('click', () => dispatch(actionPrev()));
-document.querySelector<HTMLDivElement>('.next').addEventListener('click', () => dispatch(actionPrev()));
+document.querySelector<HTMLDivElement>('.next').addEventListener('click', () => dispatch(actionNext()));
 document.querySelector<HTMLDivElement>('.restart').addEventListener('click', () => dispatch(actionRestart()));
